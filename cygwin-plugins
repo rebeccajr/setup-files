@@ -1,0 +1,21 @@
+List of cygwin plugins
+
+ctags
+
+gcc-g++
+
+git
+
+python27
+python39
+python39-pip
+
+emacs
+gedit
+
+vim
+vim-clang-format
+vim-cmake
+vim-doc
+
+tmux
