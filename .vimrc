@@ -1,13 +1,10 @@
-"-------------------------------------------------------------------------------
+"_______________________________________________________________________________
 " DESCRIPTION
 " This file contains the setup commands for vim.
-"
-"
-"
-"-------------------------------------------------------------------------------
+"_______________________________________________________________________________
 
-"show syntax coloring
-syntax on
+"_______________________________________________________________________________
+" LINE WRAPPING
 
 "text will wrap in window if it goes beyond window width
 set wrap
@@ -15,15 +12,17 @@ set wrap
 "text will wrap when a word breaks
 set linebreak
 
+"_______________________________________________________________________________
+" NUMBERING
+
 "shows line numbers
 set number
 
 "shows cursor location like row and column number
 set ruler
 
-highlight LineNr ctermfg=8
-
-:set formatoptions+=nrco
+"_______________________________________________________________________________
+" WHITESPACE
 
 " expand tabs unless in a makefile
 let _curfile = expand("%:t")
@@ -35,5 +34,47 @@ set tabstop=4
 set shiftwidth=4
 endif
 
+"_______________________________________________________________________________
+" OTHER SETTINGS
+
+"show syntax coloring
+syntax on
+
+highlight LineNr ctermfg=8
+
+set formatoptions+=nrco
+
+"_______________________________________________________________________________
+" KEYMAPS
+
+" remap :
+nnoremap ;; :
+
+" remap esc key
+inoremap jk <esc>
+inoremap JK <esc>
+nnoremap jk <esc>
+nnoremap JK <esc>
+
+" remap save
+inoremap fds <esc>:w<cr>
+inoremap FDS <esc>:w<cr>
+nnoremap fds      :w<cr>
+nnoremap FDS      :w<cr>
+
+" remap quit without save
+inoremap dsa <esc> :q!<cr>
+inoremap DSA <esc> :q!<cr>
+nnoremap dsa       :q!<cr>
+nnoremap DSA       :q!<cr>
+
+" remap save and quit
+inoremap fdsa <esc> :wq<cr>
+inoremap FDSA <esc> :wq<cr>
+nnoremap fdsa       :wq<cr>
+nnoremap FDSA       :wq<cr>
+
+
 "append a line of the next typed character below the current line.
-:map Q yypv$r
+inoremap Q yypv$r
+
