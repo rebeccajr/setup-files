@@ -16,7 +16,13 @@ Windows likes to make an alert sound every time tab complete doesn't work or oth
 
 Download cygwin, install packages
 
----
+- lynx
+- wget
+- tar
+- git
+- vim
+
+--
 # SSH Key
 
 Generate an ssh key and add the public key to GitHub settings.
