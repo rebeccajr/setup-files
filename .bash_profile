@@ -13,13 +13,21 @@ alias vimb='vim ~/.bash_profile; src'
 alias vimv='vim ~/.vimrc'
 alias vimt='vim ~/.tmux.conf'
 
-export GIT_PATH=~/git
-
-alias cdg='cd $GIT_PATH'
-
 #_______________________________________________________________________________
 # NAVIGATION
 
-alias cds='cd $GIT_PATH/setup-files'
+export GIT_PATH=~/git
+export RTOS_REPO_PATH=~/git/rtos
+
+alias cds=' cd $GIT_PATH/setup-files'
+alias cdg=' cd $GIT_PATH'
+alias cdgr='cd $RTOS_REPO_PATH'
+#_______________________________________________________________________________
+# OTHER SHORTCUTS
+
+alias gs='git status'
+alias dsa='exit'
+
+set -o vi
 
 
