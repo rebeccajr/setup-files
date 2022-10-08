@@ -63,10 +63,10 @@ nnoremap fds      :w<cr>
 nnoremap FDS      :w<cr>
 
 " remap quit without save
-inoremap dsa <esc> :q!<cr>
-inoremap DSA <esc> :q!<cr>
-nnoremap dsa       :q!<cr>
-nnoremap DSA       :q!<cr>
+inoremap dsa <esc> :q!
+inoremap DSA <esc> :q!
+nnoremap dsa       :q!
+nnoremap DSA       :q!
 
 " remap save and quit
 inoremap fdsa <esc> :wq<cr>
