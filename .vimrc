@@ -72,3 +72,5 @@ nnoremap DSA       :q!
 "append a line of the next typed character below the current line.
 inoremap Q yypv$r
 
+" make backspace behave properly
+set backspace=2
