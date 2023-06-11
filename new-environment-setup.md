@@ -12,6 +12,9 @@ This file includes steps for setting up my linux environment on a new machine. I
 Windows likes to make an alert sound every time tab complete doesn't work or other silly things. Turn it off in settings.
 
 Go to Audio - change other sound settings
+or
+
+Sound -> sound control panel -> Sounds tab -> Sound Scheme dropdown -> No Sounds
 
 In the window labeled `Sound` -> tab labeled `Sounds` select the menu option `No Sounds`
 
