@@ -18,6 +18,9 @@ Sound -> sound control panel -> Sounds tab -> Sound Scheme dropdown -> No Sounds
 
 In the window labeled `Sound` -> tab labeled `Sounds` select the menu option `No Sounds`
 
+![image](https://github.com/rebeccajr/setup-files/assets/26588191/e0ed896a-65d4-4c45-9188-5a8fbb7f12dd)
+
+
 ---
 # Cygwin
 
