@@ -68,13 +68,9 @@ inoremap DSA <esc> :q!
 nnoremap dsa       :q!
 nnoremap DSA       :q!
 
-" remap save and quit
-inoremap fdsa <esc> :wq<cr>
-inoremap FDSA <esc> :wq<cr>
-nnoremap fdsa       :wq<cr>
-nnoremap FDSA       :wq<cr>
-
 
 "append a line of the next typed character below the current line.
 inoremap Q yypv$r
 
+" make backspace behave properly
+set backspace=2
