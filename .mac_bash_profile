@@ -1,0 +1,70 @@
+#_______________________________________________________________________________
+# DESCRIPTION
+# Bash profile that includes shortcuts to optimze computing
+#_______________________________________________________________________________
+
+alias src='source ~/.bash_profile'
+
+#_______________________________________________________________________________
+# EDIT SETTINGS
+
+alias vimb='vim ~/.bash_profile; src'
+alias vimv='vim ~/.vimrc'
+alias vimt='vim ~/.tmux.conf'
+
+
+#_______________________________________________________________________________
+# NAVIGATION
+
+export GIT_PATH=~/git
+export RTOS_REPO_PATH=~/git/rtos
+
+alias cds=' cd $GIT_PATH/setup-files'
+alias cdg=' cd $GIT_PATH'
+alias cdgr='cd $RTOS_REPO_PATH'
+
+alias cdc='cdg; cd color-clock/sw/arduino/color-clock-driver'
+
+alias cdd='cd ~/Desktop'
+alias cde='cdg ekggg/ekg'
+alias openwith='open -a'
+
+
+#-------------------------------------------------------------------------------
+# change prompt
+export PS1="🐰 [%d] "
+export u="/dev/tty.usbserial-A800etLR"
+
+
+#-------------------------------------------------------------------------------
+# arduino
+alias ard-compile='arduino-cli compile --fqbn arduino:samd:mkr1000'
+alias ard-upload='arduino-cli upload -p /dev/tty.usbmodem14201 --fqbn arduino:samd:mkr1000'
+alias ard-run='ard-compile; ard-upload'
+alias ard-screen='screen /dev/tty.usbmodem14201'
+alias ard-log='script -a -t 0 out.txt screen /dev/tty.usbmodem14201'
+
+alias color-clock-ard-compile='arduino-cli compile --fqbn arduino:samd:mkr1000 --libraries ./ '
+
+
+
+#-------------------------------------------------------------------------------
+# paths
+export PATH="/usr/local/Cellar/octave/4.0.0_5/bin:/opt/local/bin:/opt/local/sbin:$PATH"
+export PATH=$PATH:/Applications/sdk/platform-tools
+
+# added by Anaconda2 4.2.0 installer
+export PATH="/Users/rebeccarashkin/anaconda2/bin:$PATH"
+
+
+#-------------------------------------------------------------------------------
+# I don't remember what this stuff is for
+export ard="/Applications/Arduino.app/Contents/Resources/Java/"
+export ard1="/Applications/Arduino_1_5_8.app/Contents/Resources/Java/"
+export CAD_ROOT="/opt/local/lib/"
+
+set -o vi
+set editing-mode vi
+set keymap vi-command
+set keymap vi-insert 
+
