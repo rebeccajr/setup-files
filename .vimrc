@@ -51,10 +51,10 @@ set formatoptions+=nrco
 nnoremap ;; :
 
 " remap esc key
-inoremap jk <esc>
-inoremap JK <esc>
-nnoremap jk <esc>
-nnoremap JK <esc>
+inoremap l; <esc>
+inoremap L: <esc>
+nnoremap l; <esc>
+nnoremap L: <esc>
 
 " remap save
 inoremap fds <esc>:w<cr>
