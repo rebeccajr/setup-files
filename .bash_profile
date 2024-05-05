@@ -12,6 +12,8 @@ alias src='source ~/.bash_profile'
 alias vimb='vim ~/.bash_profile; src'
 alias vimv='vim ~/.vimrc'
 alias vimt='vim ~/.tmux.conf'
+alias vimz='vim ~/.zshrc'
+
 
 #_______________________________________________________________________________
 # NAVIGATION
@@ -29,5 +31,4 @@ alias gs='git status'
 alias dsa='exit'
 
 set -o vi
-
 
