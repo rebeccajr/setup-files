@@ -8,11 +8,21 @@ This file includes steps for setting up my linux environment on a new machine. I
 
 # Ubuntu
 
-## Install from apt
+## Create root password
+```bash
+passwd
 ```
-sudo apt install vim
-sudo apt install zsh
-sudo apt install curl
+
+
+## Install from apt
+Use `sudo` before all `apt` commands if you do not have a root password.
+
+```
+su
+apt install vim
+apt install zsh
+apt install curl
+apt install tmux
 ```
 
 ## From App Center
@@ -62,6 +72,71 @@ Source:  [Arduino CLI ](https://arduino.github.io/arduino-cli/0.35/installation/
    arduino-cli upgrade
    ```
 
+--
+# SSH Key
+
+## GitHub
+
+[Source](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+Generate an ssh key and add the public key to GitHub settings.
+```
+>> ssh-keygen -t ed25519 -C "email@address.com"
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/<user_name>/.ssh/id_ed25519): (hit enter)
+Enter passphrase (empty for no passphrase): (hit enter)
+Enter same passphrase again: (hit enter)
+Your identification has been saved in /home/<user_name>/.ssh/id_ed25519
+Your public key has been saved in /home/<user_name>/.ssh/id_ed25519.pub
+The key fingerprint is:
+################################################## email@address.com
+The key's randomart image is:
++--[ED25519 256]--+
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
++----[SHA256]-----+
+
+```
+
+Start the ssh-agent in the background.
+```bash
+> eval "$(ssh-agent -s)"
+Agent pid 59566
+```
+```bash
+> ssh-add ~/.ssh/id_ed25519
+Identity added: /home/flux/.ssh/id_ed25519 (email@address.com)
+```
+From GitHub, go to settings
+
+![image](https://github.com/rebeccajr/setup-files/assets/26588191/b3687c61-8f91-4205-bc94-00f0debf50a7)
+
+![image](https://github.com/rebeccajr/setup-files/assets/26588191/cff278ee-08f4-4d9a-a314-7c2d9f7c9176)
+
+Click `New SSH key` button
+
+![image](https://github.com/rebeccajr/setup-files/assets/26588191/a3783b60-4c7f-42e6-9bbe-7428a89eac61)
+
+
+---
+## SSH Key
+
+Generate an ssh key and add the public key to GitHub settings
+
+
+---
+## Git
+
+1. Create a folder called `git` in the home directory.
+1. Clone the setup-files repo (although if you are reading this, you've probably already done this).
+1. Move the .vimrc and .bash_profile files into the home directory.
 
 ---
 # Windows
@@ -91,23 +166,7 @@ Download cygwin, install packages
 - git
 - vim
 
---
-# SSH Key
 
-Generate an ssh key and add the public key to GitHub settings.
-`ssh-keygen`
-
----
-## SSH Key
-
-Generate an ssh key and add the public key to GitHub settings
-
----
-## Git
-
-1. Create a folder called `git` in the home directory.
-1. Clone the setup-files repo (although if you are reading this, you've probably already done this).
-1. Move the .vimrc and .bash_profile files into the home directory.
 
 ---
 ## Software Downloads
@@ -115,3 +174,5 @@ Generate an ssh key and add the public key to GitHub settings
 - Spotify
 - Slack
 - Steam
+
+
