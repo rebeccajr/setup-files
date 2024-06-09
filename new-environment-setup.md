@@ -27,13 +27,17 @@ apt install tmux
 
 ```
 
+## Install from snap
+``
+sudo snap install discord
+``
+
 ## From App Center
 - Steam
 - Slack
 - code
 
 ## Download `.deb` files
-Discord
 Chrome
 
 From directory with `.deb` file
