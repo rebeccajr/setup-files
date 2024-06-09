@@ -20,9 +20,11 @@ Use `sudo` before all `apt` commands if you do not have a root password.
 ```
 su
 apt install vim
+apt install git
 apt install zsh
 apt install curl
 apt install tmux
+
 ```
 
 ## From App Center
@@ -73,9 +75,17 @@ Source:  [Arduino CLI ](https://arduino.github.io/arduino-cli/0.35/installation/
    ```
 
 --
-# SSH Key
+# Git
 
-## GitHub
+After installing Git (`sudo apt install git`), edit the configuration
+```
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
+
+## SSH Key
+
+### GitHub
 
 [Source](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
