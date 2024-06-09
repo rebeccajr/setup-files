@@ -30,6 +30,7 @@ apt install tmux
 ## From App Center
 - Steam
 - Slack
+- code
 
 ## Download `.deb` files
 Discord
@@ -191,6 +192,11 @@ git clone git@github.com:rebeccajr/setup-files.git
 ```
 source cp-dot-files.sh
 ```
+
+## Visual Studio Code
+
+Extensions
+
 
 ---
 # Windows
