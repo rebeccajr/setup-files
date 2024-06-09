@@ -29,6 +29,38 @@ From directory with `.deb` file
 sudo dpkg -i <.deb file>
 ```
 
+## Arduino CLI
+
+Source:  [Arduino CLI ](https://arduino.github.io/arduino-cli/0.35/installation/)
+
+1. Create `~/local/` if it doesn't already exist:
+   ```bash
+   mkdir ~/local
+   ```
+
+1. Navigate to `~/local` and run command to install `arduino-cli`
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+   ```
+
+1. Pre-pended `$PATH` environment variable with this line in `~/.bash_profile`
+   ```bash
+   export PATH=~/local/bin:$PATH
+   ```
+1. Source `.bash_profile`
+   ```bash
+   source ~/.bash_profile
+   ```
+
+1. Verify `arduino-cli` was installed
+   ```bash
+   > which arduino-cli
+   /home/flux/local/bin/arduino-cli
+   ```
+1. Update `arduino-cli`
+   ```bash
+   arduino-cli upgrade
+   ```
 
 
 ---
