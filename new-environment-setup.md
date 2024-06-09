@@ -135,18 +135,62 @@ Click `New SSH key` button
 ![image](https://github.com/rebeccajr/setup-files/assets/26588191/a3783b60-4c7f-42e6-9bbe-7428a89eac61)
 
 
----
-## SSH Key
+### Azure DevOps
+[Source](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/create-ssh-keys-detailed)
 
-Generate an ssh key and add the public key to GitHub settings
+```
+> ssh-keygen -m PEM -t rsa -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/<user_name>/.ssh/id_rsa): (hit enter)
+Enter passphrase (empty for no passphrase): (hit enter)
+Enter same passphrase again: (hit enter)
+Your identification has been saved in /home/<user_name>/.ssh/id_rsa
+Your public key has been saved in /home/<user_name>/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:########################################### user@computer
+The key's randomart image is:
++---[RSA 4096]----+
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
+|   ###########   |
++----[SHA256]-----+
 
+```
 
----
+Verify
+```
+> eval "$(ssh-agent -s)"
+Agent pid 12956
+```
+
+From Azure DevOps web interface
+
+![image](https://github.com/rebeccajr/setup-files/assets/26588191/22794730-1a2b-4cff-a34f-0d5d541819db)
+
+![image](https://github.com/rebeccajr/setup-files/assets/26588191/dc7e2c15-d796-49a2-936f-831475221637)
+
+![image](https://github.com/rebeccajr/setup-files/assets/26588191/63636e8a-72a9-41f1-96c6-cbda6de0ba4a)
+
 ## Git
 
-1. Create a folder called `git` in the home directory.
-1. Clone the setup-files repo (although if you are reading this, you've probably already done this).
-1. Move the .vimrc and .bash_profile files into the home directory.
+1. Create a folder called `git` in `/home/user`
+```bash
+mkdir ~/git
+```
+1. Clone the setup-files repo.
+```
+git clone git@github.com:rebeccajr/setup-files.git
+```
+1. Run `cp-dot-files.sh`
+```
+source cp-dot-files.sh
+```
 
 ---
 # Windows
