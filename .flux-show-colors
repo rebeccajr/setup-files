@@ -1,0 +1,11 @@
+#_______________________________________________________________
+# This script displays all the ANSI colors to the screen.
+#_______________________________________________________________
+
+for ((color = 30; color <= 37; color++)); do
+    echo -e "\e[${color}m Color ${color} \e[0m"
+done
+
+for ((color = 90; color <= 97; color++)); do
+    echo -e "\e[1;${color}m Color ${color} \e[0m"
+done
