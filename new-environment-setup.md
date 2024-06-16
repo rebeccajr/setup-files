@@ -20,6 +20,7 @@ Use `sudo` before all `apt` commands if you do not have a root password.
 ```
 su
 apt install vim
+apt install emacs
 apt install git
 apt install zsh
 apt install curl
