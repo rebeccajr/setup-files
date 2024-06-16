@@ -49,6 +49,7 @@ sudo dpkg -i <.deb file>
 
 ## Arduino CLI
 
+### Install Arduino CLI
 Source:  [Arduino CLI ](https://arduino.github.io/arduino-cli/0.35/installation/)
 
 1. Create `~/local/` if it doesn't already exist:
@@ -79,7 +80,11 @@ Source:  [Arduino CLI ](https://arduino.github.io/arduino-cli/0.35/installation/
    ```bash
    arduino-cli upgrade
    ```
-
+### Install Cores
+```
+arduino-cli core install arduino:samd
+arduino-cli core install arduino:esp32
+```
 --
 # Git
 
