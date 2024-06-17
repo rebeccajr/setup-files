@@ -4,12 +4,28 @@
 # This file contains aliases and environment variables.
 #_______________________________________________________________
 
+
+#_______________________________________________________________
+# PROMPT
+# \A    time
+# \w    current working directory
+
+BASH_SHELL='-bash'
+
+# $0 is current shell
+if [[ "$0" == "$BASH_SHELL" ]]; then
+  PS1='bash 🐰 ⏲ \A [\w] > '
+fi
+
+#_______________________________________________________________
+# SOURCE CONFIGURATIONS 
 alias src='source ~/.bash_profile'
 alias srz='source ~/.zshrc'
 
 #_______________________________________________________________
 # ARDUINO
 export MKR1000=arduino:samd:mkr1000
+export MKR1010=arduino:samd:mkrwifi1010
 
 export NANO_ESP32=esp32:esp32:nano32
 export NANO_ESP32=esp32:esp32:esp32c3
@@ -19,6 +35,7 @@ export NANO_ESP32=arduino:esp32:nano_nora
 
 export ARDUINO_BOARD=$NANO_ESP32
 export ARDUINO_BOARD=$MKR1000
+export ARDUINO_BOARD=$MKR1010
 
 export ARDUINO_COMM_PORT=/dev/ttyACM2
 export ARDUINO_COMM_PORT=/dev/ttyACM1
@@ -88,4 +105,7 @@ alias load-theme='dconf load /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262
 alias vimdconf='vim ~/.themes/flux-dark.dconf'
 alias show-colors='source ~/.flux-show-colors'
 
-load-theme
+# $0 is current shell
+if [[ "$0" == "$BASH_SHELL" ]]; then
+  load-theme
+fi
