@@ -4,7 +4,7 @@
 #_______________________________________________________________________
 
 import argparse
-from .color_scheme_strings import HelpStrings
+from .color_scheme_strings import ColorSchemeStrings
 
 class ColorSchemeParser:
 
@@ -13,20 +13,20 @@ class ColorSchemeParser:
     """
     Initializes the argument parser.
     """
-    parser.prog = HelpStrings.PROGRAM_NAME
-    parser.epilog = HelpStrings.PROGRAM_EPI
-    parser.description = HelpStrings.PROGRAM_DESC
+    parser.prog = ColorSchemeStrings.PROGRAM_NAME
+    parser.epilog = ColorSchemeStrings.PROGRAM_EPI
+    parser.description = ColorSchemeStrings.PROGRAM_DESC
 
     parser.add_argument( '--profile_type'
-      , help=HelpStrings.PROFILE_TYPE_HELP_DESC
+      , help=ColorSchemeStrings.PROFILE_TYPE_HELP_DESC
       , action='store'
       , type=str
-      , choices=HelpStrings.PROFILE_TYPES
+      , choices=ColorSchemeStrings.PROFILE_TYPES
     )
 
     parser.add_argument('-rgb'
       , '--rgb_list'
-      , help=HelpStrings.RGB_LIST_HELP_DESC
+      , help=ColorSchemeStrings.RGB_LIST_HELP_DESC
       , action='store'
       , type=str
     )
