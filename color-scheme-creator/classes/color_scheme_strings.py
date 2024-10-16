@@ -3,7 +3,7 @@
 # terminal programs.
 #_______________________________________________________________________
 
-from .rgb_color import RgbConst
+from .rgb_color import RgbConst, RgbColor
 
 #_______________________________________________________________________
 class ColorSchemeStrings:
@@ -28,11 +28,11 @@ class ColorSchemeStrings:
   RGB_LIST_HELP_DESC: str =\
     'List of 8 RGB values corresponding to color indices 0 - 7.'
 
+#_______________________________________________________________________
 class KonsoleProfile:
 
   def create_simple_entry(rgb_color: int) -> str:
     return ''
-
 
   def create_konsole_profile(rgb_list: list
     , bold_bright_colors: bool = False) -> str:
@@ -42,12 +42,20 @@ class KonsoleProfile:
     return out_str
 
 
+#_______________________________________________________________________
 class GnomeProfile:
 
   color_count_: int = 14
 
   #_____________________________________________________________________
-  def __init__(self, rgb_colors: list):
+  def __init__(self
+    , foregnd: int
+    , backgnd: int
+    , rgb_colors: list):
+
+    self.rgb_colors_: list = rgb_colors
+    self.foregnd_: int = foregnd
+    self.backgnd_: int = backgnd
 
     return
 
@@ -59,15 +67,12 @@ class GnomeProfile:
     blu: int = rgb_map[RgbConst.BLU_STR]
 
     out_str: str =\
-      "'rgb({red}, {grn}, {blu})'"
+      f"'rgb({red}, {grn}, {blu})'"
 
     return out_str
 
   #_____________________________________________________________________
-  def create_color_scheme_str(self
-    , backgnd: int
-    , foregnd: int
-    , rgb_colors: list) -> str:
+  def create_color_scheme_str(self) -> str:
     """
     Creates Gnome color profile.
 
@@ -77,17 +82,37 @@ class GnomeProfile:
     rgb_colors: list of 16 default ANSI colors
     """
 
+    backgnd: dict = RgbColor.get_rgb_from_hex(self.backgnd_)
+    foregnd: dict = RgbColor.get_rgb_from_hex(self.foregnd_)
+
     out_str: str = \
       '[/]'\
-      f'\nbackground-color={self.create_color_entry(backgnd)}'\
-      f'\nforeground-color={self.create_color_entry(foregnd)}'\
-      f'\npalette=[{self.create}'\
+      f'\nbackground-color={GnomeProfile.create_color_entry(backgnd)}'\
+      f'\nforeground-color={GnomeProfile.create_color_entry(foregnd)}'\
+      f'\npalette=[{self.create_palette_str()}]'
 
     return out_str
 
+  #_____________________________________________________________________
   def create_palette_str(self) -> str:
     """
     Creates string for color pallet.
     """
+
+    out_str: str = ''
+
+
+    for color in self.rgb_colors_:
+      rgb_dict: dict = RgbColor.get_rgb_from_hex(color)
+      color_entry: str =GnomeProfile.create_color_entry(rgb_dict)
+      out_str = f'{out_str}{color_entry}'
+      if (color != self.rgb_colors_[-1]):
+        out_str = f'{out_str},'
+
+    return out_str
+
+  #_____________________________________________________________________
+  if __name__ == 'main':
+    print("hello")
 
 

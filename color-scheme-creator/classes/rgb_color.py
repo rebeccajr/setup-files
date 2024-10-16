@@ -19,7 +19,7 @@ class RgbConst:
 #_______________________________________________________________________
 class RgbColor:
 
-  def get_rgb_from_hex(self, rgb_color: int) -> dict:
+  def get_rgb_from_hex(rgb_color: int) -> dict:
     """
     Creates map of red, green, and blue values from a single number.
 
@@ -30,9 +30,9 @@ class RgbColor:
 
     rgb_map: dict = {}
 
-    red: int = (rgb_color & RgbConst) >> RgbConst.RED_RIGHT_SHIFT
-    grn: int = (rgb_color & RgbConst) >> RgbConst.GRN_RIGHT_SHIFT
-    blu: int = (rgb_color & RgbConst) >> RgbConst.BLU_RIGHT_SHIFT
+    red: int = (rgb_color & RgbConst.RED_MASK) >> RgbConst.RED_RIGHT_SHIFT
+    grn: int = (rgb_color & RgbConst.GRN_MASK) >> RgbConst.GRN_RIGHT_SHIFT
+    blu: int = (rgb_color & RgbConst.BLU_MASK) >> RgbConst.BLU_RIGHT_SHIFT
 
     rgb_map[RgbConst.RED_STR] = red
     rgb_map[RgbConst.GRN_STR] = grn
