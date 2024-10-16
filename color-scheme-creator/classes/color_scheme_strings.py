@@ -3,10 +3,11 @@
 # terminal programs.
 #_______________________________________________________________________
 
-from .rgb_color import RgbConst, RgbColor
+from classes.rgb_color import RgbConst, RgbColor
 
 #_______________________________________________________________________
 class ColorSchemeStrings:
+
   PROGRAM_NAME: str =\
     'Color Scheme Creator'
 
@@ -25,8 +26,46 @@ class ColorSchemeStrings:
     , 'konsole'
     ]
 
+  BACKGND_HELP_DESC: str =\
+    'Background color (int, value 0x000000 - 0xFFFFFF)'
+
+  FOREGND_HELP_DESC: str =\
+    'Foreground color (int, value 0x000000 - 0xFFFFFF)'
+
   RGB_LIST_HELP_DESC: str =\
-    'List of 8 RGB values corresponding to color indices 0 - 7.'
+    'List of 16 RGB values corresponding to color indices 0 - 13.'
+
+  OUT_FILE_HELP_DESC: str =\
+    'Base name of ouput file. Do not include extension.'
+
+  OUT_DIR_HELP_DESC: str =\
+    'Directory to put output file.'
+
+  GNOME_OUT_EXT: str =\
+    'dconf'
+
+  KONSOLE_OUT_EXT: str =\
+    'colorscheme'
+
+  GNOME_INPUT: str = 'gnome'
+
+  KONSOLE_INPUT: str = 'konsole'
+
+
+#_______________________________________________________________________
+class ErrorStrings:
+  ERROR_STR: str =\
+    'ERROR:'
+
+  INVALID_ENTRY: str =\
+    f'{ERROR_STR} Invalid argument input.'\
+    '\n'
+
+  INVALID_DIR: str =\
+    f'{ERROR_STR} Output directory does not exist. File will be '\
+    'created in cwd.'\
+    '\n'
+
 
 #_______________________________________________________________________
 class KonsoleProfile:
@@ -49,8 +88,8 @@ class GnomeProfile:
 
   #_____________________________________________________________________
   def __init__(self
-    , foregnd: int
     , backgnd: int
+    , foregnd: int
     , rgb_colors: list):
 
     self.rgb_colors_: list = rgb_colors

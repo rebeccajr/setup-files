@@ -2,16 +2,24 @@
   "version":        "0.2.0"
   , "configurations":
       [
-        { "name": "Test Name"
+        { "name": "color-scheme-driver"
         , "type": "debugpy"
         , "request": "launch"
-        , "program": "${file}"
+        , "program": "${workspaceFolder}/color_scheme_driver.py"
         , "console": "integratedTerminal"
         , "args":
           [ "--profile_type"
             , "gnome"
+            , "--background_color"
+            , "0x1c1c1c"
+            , "--foreground_color"
+            , "0xd7005f"
             , "--rgb_list"
             , "0x000000 0xff0000 0x00ff00 0xffff00 0x0000ff 0x00ffff 0xffff00 0xffffff"
+            //, "--name"
+            //, "theme-name"
+            //, "--out_dir"
+            //, "temp"
           ]
         }
       ]
