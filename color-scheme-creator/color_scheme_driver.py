@@ -3,22 +3,22 @@
 import argparse
 from os import path
 
+from classes.color_scheme_parser import ColorSchemeParser
 from classes.color_scheme_strings import ColorSchemeStrings
-from classes.color_scheme_strings import ErrorStrings
 from classes.color_scheme_strings import GnomeProfile
-
-from classes.color_scheme_creator import ColorSchemeParser
+from classes.color_scheme_strings import ErrorStrings
+from classes.color_scheme_parser import ParserStrings
+from utilities.color_scheme_utils import GeneralUtils
 
 #_______________________________________________________________________
-
-def new_line () -> None:
-  print()
+def new_line (new_line_count: int = 1) -> None:
+  for i in range(new_line_count):
+    print()
 
 #_______________________________________________________________________
 if __name__ == '__main__':
 
-  new_line()
-  new_line()
+  new_line(2)
 
   parser: argparse.ArgumentParser = argparse.ArgumentParser()
   ColorSchemeParser.init_parser(parser)
@@ -30,17 +30,13 @@ if __name__ == '__main__':
   #_____________________________________________________________________
   color_str_list: list = args.rgb_list.split()
 
-  color_count: int = len(color_str_list)
-
   # Initialize int color list
-  rgb_int_list: list = [0] * color_count
+  rgb_int_list: list = GeneralUtils.str_list_to_hex_list(color_str_list)
 
-  # Convert list of strings to list of ints
-  for i in range(color_count):
-    rgb_int_list[i] = int(color_str_list[i], base=16)
   #_____________________________________________________________________
+  if (args.profile_type
+    and args.profile_type == ParserStrings.GNOME_INPUT):
 
-  if (args.profile_type == ColorSchemeStrings.GNOME_INPUT):
     gnome_profile: GnomeProfile =\
         GnomeProfile(args.background_color
           , args.foreground_color
@@ -63,5 +59,8 @@ if __name__ == '__main__':
       f.close()
 
       print(out_str)
+
+    if(args.file):
+      GeneralUtils.read_hex_color_json(args.file)
 
   print()

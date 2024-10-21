@@ -1,0 +1,21 @@
+
+{ "background": "0x282828"
+  , "foreground": "0xDF5f87"
+  , "pallette":["0x5f0000"
+    , "0xFF5f00"
+    , "0x5fFF00"
+    , "0xFFFF5f"
+    , "0x5f00FF"
+    , "0xFF5fFF"
+    , "0x5fFFFF"
+    , "0xFFFFFF"
+    , "0x5f0000"
+    , "0xFF5f00"
+    , "0x5fFF00"
+    , "0xFFFF5f"
+    , "0x5f00FF"
+    , "0xFF5fFF"
+    , "0x5fFFFF"
+    , "0xFFFFFF"
+  ]
+}

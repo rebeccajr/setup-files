@@ -7,50 +7,11 @@ from classes.rgb_color import RgbConst, RgbColor
 
 #_______________________________________________________________________
 class ColorSchemeStrings:
-
-  PROGRAM_NAME: str =\
-    'Color Scheme Creator'
-
-  PROGRAM_DESC: str =\
-    'This program creates color scheme files in the format of several '\
-    'terminal programs.'
-
-  PROGRAM_EPI:  str =\
-    'This is the epilog to the help menu.'
-
-  PROFILE_TYPE_HELP_DESC: str =\
-    'Type of profile, e.g. Gnome, Konsole'
-
-  PROFILE_TYPES: list =\
-    [ 'gnome'
-    , 'konsole'
-    ]
-
-  BACKGND_HELP_DESC: str =\
-    'Background color (int, value 0x000000 - 0xFFFFFF)'
-
-  FOREGND_HELP_DESC: str =\
-    'Foreground color (int, value 0x000000 - 0xFFFFFF)'
-
-  RGB_LIST_HELP_DESC: str =\
-    'List of 16 RGB values corresponding to color indices 0 - 13.'
-
-  OUT_FILE_HELP_DESC: str =\
-    'Base name of ouput file. Do not include extension.'
-
-  OUT_DIR_HELP_DESC: str =\
-    'Directory to put output file.'
-
   GNOME_OUT_EXT: str =\
     'dconf'
 
   KONSOLE_OUT_EXT: str =\
     'colorscheme'
-
-  GNOME_INPUT: str = 'gnome'
-
-  KONSOLE_INPUT: str = 'konsole'
-
 
 #_______________________________________________________________________
 class ErrorStrings:
@@ -66,6 +27,19 @@ class ErrorStrings:
     'created in cwd.'\
     '\n'
 
+#_______________________________________________________________________
+class ColorScheme:
+
+  def __init__(self
+    , backgnd: int
+    , foregnd: int
+    , rgb_colors: list):
+
+    self.rgb_colors_: list = rgb_colors
+    self.foregnd_: int = foregnd
+    self.backgnd_: int = backgnd
+
+    return
 
 #_______________________________________________________________________
 class KonsoleProfile:
@@ -82,21 +56,9 @@ class KonsoleProfile:
 
 
 #_______________________________________________________________________
-class GnomeProfile:
+class GnomeProfile(ColorScheme):
 
   color_count_: int = 14
-
-  #_____________________________________________________________________
-  def __init__(self
-    , backgnd: int
-    , foregnd: int
-    , rgb_colors: list):
-
-    self.rgb_colors_: list = rgb_colors
-    self.foregnd_: int = foregnd
-    self.backgnd_: int = backgnd
-
-    return
 
   #_____________________________________________________________________
   def create_color_entry(rgb_map: dict) -> str:
