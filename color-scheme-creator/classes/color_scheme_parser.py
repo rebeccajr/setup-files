@@ -4,8 +4,10 @@
 #_______________________________________________________________________
 
 import argparse
+from os import getcwd
 
 from utilities.color_scheme_utils import GeneralUtils
+from classes.rgb_color import RgbConst
 
 
 #_______________________________________________________________________
@@ -29,6 +31,12 @@ class ParserStrings:
     , 'konsole'
     ]
 
+  CMD_LINE_ENTRY_GROUP_TITLE: str =\
+    'Command Line Color Entry'
+
+  CMD_LINE_ENTRY_GROUP_DESC: str =\
+    'Argument group for command line entry'
+
   BACKGND_HELP_DESC: str =\
     'Background color'
 
@@ -46,7 +54,9 @@ class ParserStrings:
 
   COLOR_JASON_HELP_DESC: str =\
     'Path to json file containing the foreground, background, '\
-    'and pallette. Example:'\
+    'and pallette. Should not be used  if the '\
+    f'{CMD_LINE_ENTRY_GROUP_TITLE} argument group is entered.'\
+    '\nExample:'\
     '\n{ "background": "0x282828"'\
     '\n  , "foreground": "0xDF5f87"'\
     '\n  , "pallette":["0x5f0000"'\
@@ -74,6 +84,8 @@ class ParserStrings:
 
   COLOR_RANGE: str = '{0x000000-0xFFFFFF}'
 
+  DEFAULT_NAME: str = 'color-scheme-name'
+
 
 #_______________________________________________________________________
 class ColorSchemeParser:
@@ -91,18 +103,22 @@ class ColorSchemeParser:
       , help=ParserStrings.PROFILE_TYPE_HELP_DESC
       , action='store'
       , type=str
+      , required=True
+      , default=RgbConst.DEFAULT_RGB_LIST
       , choices=ParserStrings.PROFILE_TYPES
     )
 
     # Add type, move strings to class
-    cmd_line_group = parser.add_argument_group(
-      'Command Line Entry', 'Argument group for command line entry')
+    cmd_line_group = parser.add_argument_group(\
+      ParserStrings.CMD_LINE_ENTRY_GROUP_TITLE
+       , ParserStrings.CMD_LINE_ENTRY_GROUP_DESC)
 
     cmd_line_group.add_argument('--background_color'
       , help=ParserStrings.BACKGND_HELP_DESC
       , action='store'
       , type=GeneralUtils.hex_int
       , required=False
+      , default=RgbConst.DEFAULT_BACKGROUND
       , choices=range(0, GeneralUtils.MAX_COLOR + 1)
       , metavar=ParserStrings.COLOR_RANGE
     )
@@ -112,6 +128,7 @@ class ColorSchemeParser:
       , action='store'
       , type=GeneralUtils.hex_int
       , required=False
+      , default=RgbConst.DEFAULT_FOREGROUND
       , choices=range(0, GeneralUtils.MAX_COLOR + 1)
       , metavar=ParserStrings.COLOR_RANGE
     )
@@ -122,6 +139,7 @@ class ColorSchemeParser:
       , action='store'
       , type=str
       , required=False
+      , default=RgbConst.DEFAULT_RGB_LIST
     )
 
     cmd_line_group.add_argument('--name'
@@ -129,19 +147,21 @@ class ColorSchemeParser:
       , action='store'
       , type=str
       , required=False
-      , default='default theme name'
+      , default=ParserStrings.DEFAULT_NAME
     )
 
     cmd_line_group.add_argument('--out_dir'
       , help=ParserStrings.OUT_DIR_HELP_DESC
       , action='store'
       , type=str
+      , default=getcwd()
     )
 
     parser.add_argument('--file'
       , help=ParserStrings.COLOR_JASON_HELP_DESC
       , action='store'
       , type=str
+      , required=False
     )
 
     return

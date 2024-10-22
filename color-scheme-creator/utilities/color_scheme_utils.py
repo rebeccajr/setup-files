@@ -48,6 +48,28 @@ class GeneralUtils:
     return int_list
 
   #_____________________________________________________________________
+  def rgb_str_to_int_list(rgb_str_list: str) -> list[int]:
+    """
+    Generates a list of RGB values from a white space separated list
+    of 24-bit ints.
+
+    Parameters
+    rgb_str_list - string with a list of hex values,
+      '0x000000 0xff0000 0x00ff00'
+
+    Returns
+    List of ints corresponding to input argument
+    """
+
+    #_____________________________________________________________________
+    # Parse color inputs to list of strings
+    #_____________________________________________________________________
+    color_str_list: list = rgb_str_list.split()
+
+    # Initialize int color list
+    return GeneralUtils.str_list_to_hex_list(color_str_list)
+
+  #_____________________________________________________________________
   def read_hex_color_json(file_path: str) -> dict:
     """
     Reads json file in the format

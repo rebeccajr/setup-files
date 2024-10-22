@@ -28,14 +28,14 @@ if __name__ == '__main__':
   #_____________________________________________________________________
   # Parse color inputs to list of strings
   #_____________________________________________________________________
-  color_str_list: list = args.rgb_list.split()
-
-  # Initialize int color list
-  rgb_int_list: list = GeneralUtils.str_list_to_hex_list(color_str_list)
+  rgb_int_list: list = GeneralUtils.rgb_str_to_int_list(args.rgb_list)
 
   #_____________________________________________________________________
-  if (args.profile_type
-    and args.profile_type == ParserStrings.GNOME_INPUT):
+  if (args.profile_type == ParserStrings.GNOME_INPUT):
+
+    if(args.file):
+      color_scheme_dict: dict =\
+        GeneralUtils.read_hex_color_json(args.file)
 
     gnome_profile: GnomeProfile =\
         GnomeProfile(args.background_color
@@ -60,7 +60,5 @@ if __name__ == '__main__':
 
       print(out_str)
 
-    if(args.file):
-      GeneralUtils.read_hex_color_json(args.file)
 
   print()

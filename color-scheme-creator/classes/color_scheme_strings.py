@@ -28,16 +28,20 @@ class ErrorStrings:
     '\n'
 
 #_______________________________________________________________________
-class ColorScheme:
+class ColorScheme(dict):
+
+  BACKGROUND_COLOR: str = "background-color"
+  FOREGROUND_COLOR: str = "foreground-color"
+  PALLETTE: str = "pallette"
 
   def __init__(self
     , backgnd: int
     , foregnd: int
     , rgb_colors: list):
 
-    self.rgb_colors_: list = rgb_colors
-    self.foregnd_: int = foregnd
-    self.backgnd_: int = backgnd
+    self[ColorScheme.BACKGROUND_COLOR] = backgnd
+    self[ColorScheme.FOREGROUND_COLOR] = foregnd
+    self[ColorScheme.PALLETTE] = rgb_colors
 
     return
 
@@ -83,14 +87,18 @@ class GnomeProfile(ColorScheme):
     rgb_colors: list of 16 default ANSI colors
     """
 
-    backgnd: dict = RgbColor.get_rgb_from_hex(self.backgnd_)
-    foregnd: dict = RgbColor.get_rgb_from_hex(self.foregnd_)
+    BACKGND: str = ColorScheme.BACKGROUND_COLOR
+    FOREGND: str = ColorScheme.FOREGROUND_COLOR
+    PALLETTE: str = ColorScheme.PALLETTE
+
+    backgnd: dict = RgbColor.get_rgb_from_hex(self[BACKGND])
+    foregnd: dict = RgbColor.get_rgb_from_hex(self[FOREGND])
 
     out_str: str = \
       '[/]'\
-      f'\nbackground-color={GnomeProfile.create_color_entry(backgnd)}'\
-      f'\nforeground-color={GnomeProfile.create_color_entry(foregnd)}'\
-      f'\npalette=[{self.create_palette_str()}]'
+      f'\n{BACKGND}={GnomeProfile.create_color_entry(backgnd)}'\
+      f'\n{FOREGND}={GnomeProfile.create_color_entry(foregnd)}'\
+      f'\n{PALLETTE}=[{self.create_palette_str()}]'
 
     return out_str
 
@@ -103,11 +111,11 @@ class GnomeProfile(ColorScheme):
     out_str: str = ''
 
 
-    for color in self.rgb_colors_:
+    for color in self[ColorScheme.PALLETTE]:
       rgb_dict: dict = RgbColor.get_rgb_from_hex(color)
       color_entry: str =GnomeProfile.create_color_entry(rgb_dict)
       out_str = f'{out_str}{color_entry}'
-      if (color != self.rgb_colors_[-1]):
+      if (color != self[ColorScheme.PALLETTE][-1]):
         out_str = f'{out_str},'
 
     return out_str

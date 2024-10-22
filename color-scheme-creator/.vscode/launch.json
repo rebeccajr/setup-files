@@ -15,11 +15,11 @@
             , "--foreground_color"
             , "0xd7005f"
             , "--rgb_list"
-            , "0x000000 0xff0000 0x00ff00 0xffff00 0x0000ff 0x00ffff 0xffff00 0xffffff"
-            , "--file"
-            , "utilities/color_file_ex.json"
-            //, "--name"
-            //, "theme-name"
+            , "0x000080 0xff0000 0x00ff00 0xffff00 0x0000ff 0x00ffff 0xffff00 0xffffff"
+            //, "--file"
+            //, "utilities/color_file_ex.json"
+            , "--name"
+            , "a-color-scheme"
             //, "--out_dir"
             //, "temp"
           ]
@@ -30,7 +30,7 @@
           , "program": "${workspaceFolder}/color_scheme_driver.py"
           , "console": "integratedTerminal"
           , "args":
-            [ "--help"
+            [ //"--help"
             ]
         }
         , { "name": "mutex-arg-test"
