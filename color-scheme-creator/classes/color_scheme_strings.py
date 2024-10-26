@@ -4,6 +4,7 @@
 #_______________________________________________________________________
 
 from classes.rgb_color import RgbConst, RgbColor
+from utilities.color_scheme_utils import GeneralUtils as Utils
 
 #_______________________________________________________________________
 class ColorSchemeStrings:
@@ -32,18 +33,98 @@ class ColorScheme(dict):
 
   BACKGROUND_COLOR: str = "background-color"
   FOREGROUND_COLOR: str = "foreground-color"
-  PALLETTE: str = "pallette"
+  PALETTE: str = "palette"
 
-  def __init__(self
-    , backgnd: int
-    , foregnd: int
-    , rgb_colors: list):
+  #_____________________________________________________________________
+  def __init__(self, *arg):
 
-    self[ColorScheme.BACKGROUND_COLOR] = backgnd
-    self[ColorScheme.FOREGROUND_COLOR] = foregnd
-    self[ColorScheme.PALLETTE] = rgb_colors
+    self[ColorScheme.BACKGROUND_COLOR] = RgbConst.DEFAULT_BACKGROUND
+    self[ColorScheme.FOREGROUND_COLOR] = RgbConst.DEFAULT_FOREGROUND
+    self[ColorScheme.PALETTE] = RgbConst.DEFAULT_RGB_INT_LIST
+
+    if (not len(arg)):
+      return
+
+    #___________________________________________________________________
+    if (isinstance(arg[0], dict)):
+      self.construct_from_dict(arg[0])
+
+    #___________________________________________________________________
+    if (isinstance(arg[0], int)):
+        self[ColorScheme.BACKGROUND_COLOR] = arg[0]
+
+    #___________________________________________________________________
+    if (len(arg) > 1):
+      try:
+        self[ColorScheme.FOREGROUND_COLOR] = arg[1]
+      except TypeError:
+        pass
+
+    #___________________________________________________________________
+    if (len(arg) > 2):
+      try:
+        rgb_colors: str = arg[2]
+
+        rgb_color_str_list: list[str] = rgb_colors.split()
+
+        self[ColorScheme.PALETTE] =\
+          Utils.str_list_to_hex_list(rgb_color_str_list)
+
+      except TypeError:
+        pass
 
     return
+
+  #___________________________________________________________________
+  def construct_from_dict(self, input_dict: dict):
+    """
+    Constructs color scheme from dictionary created from json.
+    """
+    try:
+      self[ColorScheme.BACKGROUND_COLOR] =\
+        Utils.hex_int(input_dict[ColorScheme.BACKGROUND_COLOR])
+
+    except TypeError:
+      pass
+
+    #_________________________________________________________________
+    try:
+      self[ColorScheme.FOREGROUND_COLOR] =\
+        Utils.hex_int(input_dict[ColorScheme.FOREGROUND_COLOR])
+
+    except TypeError:
+      pass
+
+    #_________________________________________________________________
+    try:
+      color_pallette: list = input_dict[ColorScheme.PALETTE]
+
+      if (len(color_pallette)):
+
+        # Assumption that color pallette is list of ints
+        if (isinstance(color_pallette[0], int)):
+          self[ColorScheme.PALETTE] = color_pallette
+
+        # Assumption that color pallette is list of hex strings
+        elif (isinstance(color_pallette[0], str)):
+          self[ColorScheme.PALETTE] =\
+          Utils.str_list_to_hex_list(color_pallette)
+
+    except TypeError:
+      pass
+
+    return
+
+  #_____________________________________________________________________
+  def construct(self, json_file: dict):
+    json_file = json_file[0]
+    Cs = ColorScheme
+    background: int = Utils.hex_int(json_file[Cs.BACKGROUND_COLOR])
+    foreground: int = Utils.hex_int(json_file[Cs.FOREGROUND_COLOR])
+    rgb_color_str_list: str = json_file[Cs.PALETTE]
+
+    self.construct(background, foreground, rgb_color_str_list)
+
 
 #_______________________________________________________________________
 class KonsoleProfile:
@@ -61,8 +142,6 @@ class KonsoleProfile:
 
 #_______________________________________________________________________
 class GnomeProfile(ColorScheme):
-
-  color_count_: int = 14
 
   #_____________________________________________________________________
   def create_color_entry(rgb_map: dict) -> str:
@@ -89,7 +168,7 @@ class GnomeProfile(ColorScheme):
 
     BACKGND: str = ColorScheme.BACKGROUND_COLOR
     FOREGND: str = ColorScheme.FOREGROUND_COLOR
-    PALLETTE: str = ColorScheme.PALLETTE
+    PALETTE: str = ColorScheme.PALETTE
 
     backgnd: dict = RgbColor.get_rgb_from_hex(self[BACKGND])
     foregnd: dict = RgbColor.get_rgb_from_hex(self[FOREGND])
@@ -98,7 +177,7 @@ class GnomeProfile(ColorScheme):
       '[/]'\
       f'\n{BACKGND}={GnomeProfile.create_color_entry(backgnd)}'\
       f'\n{FOREGND}={GnomeProfile.create_color_entry(foregnd)}'\
-      f'\n{PALLETTE}=[{self.create_palette_str()}]'
+      f'\n{PALETTE}=[{self.create_palette_str()}]'
 
     return out_str
 
@@ -110,12 +189,16 @@ class GnomeProfile(ColorScheme):
 
     out_str: str = ''
 
+    palette: list[int] = self[ColorScheme.PALETTE]
 
-    for color in self[ColorScheme.PALLETTE]:
+    for i in range(len(palette)):
+      color: int = palette[i]
       rgb_dict: dict = RgbColor.get_rgb_from_hex(color)
       color_entry: str =GnomeProfile.create_color_entry(rgb_dict)
+
       out_str = f'{out_str}{color_entry}'
-      if (color != self[ColorScheme.PALLETTE][-1]):
+
+      if (i != len(palette) - 1):
         out_str = f'{out_str},'
 
     return out_str

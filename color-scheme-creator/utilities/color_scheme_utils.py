@@ -92,4 +92,5 @@ class GeneralUtils:
 
     # Open and read the JSON file
     with open(file_path, 'r') as file:
-      return json.load(file)
+      file_dict: dict = json.load(file)
+      return file_dict

@@ -19,7 +19,7 @@ class RgbConst:
   DEFAULT_BACKGROUND: int = 0x1c1c1c
   DEFAULT_FOREGROUND: int = 0xeeeeee
 
-  DEFAULT_RGB_LIST: list[str] = "0x000000"\
+  DEFAULT_RGB_STR_LIST: list[str] = "0x000000"\
      " 0xd75f5f"\
      " 0x5fd75f"\
      " 0xd7d75f"\
@@ -35,6 +35,25 @@ class RgbConst:
      " 0xd75fd7"\
      " 0x5fd7d7"\
      " 0xeeeeee"\
+
+  DEFAULT_RGB_INT_LIST: list[str] = [0x000000
+     , 0xd75f5f
+     , 0x5fd75f
+     , 0xd7d75f
+     , 0x5f5fd7
+     , 0xd75fd7
+     , 0x5fd7d7
+     , 0xeeeeee
+     , 0x000000
+     , 0xd75f5f
+     , 0x5fd75f
+     , 0xd7d75f
+     , 0x5f5fd7
+     , 0xd75fd7
+     , 0x5fd7d7
+     , 0xeeeeee
+  ]
+
 
 #_______________________________________________________________________
 class RgbColor:

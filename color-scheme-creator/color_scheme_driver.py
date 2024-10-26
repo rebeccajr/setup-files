@@ -28,31 +28,28 @@ if __name__ == '__main__':
   #_____________________________________________________________________
   # Parse color inputs to list of strings
   #_____________________________________________________________________
-  rgb_int_list: list = GeneralUtils.rgb_str_to_int_list(args.rgb_list)
-
-  #_____________________________________________________________________
   if (args.profile_type == ParserStrings.GNOME_INPUT):
 
     if(args.file):
-      color_scheme_dict: dict =\
-        GeneralUtils.read_hex_color_json(args.file)
+      gnome_color_scheme: GnomeProfile =\
+        GnomeProfile(GeneralUtils.read_hex_color_json(args.file))
 
-    gnome_profile: GnomeProfile =\
+    else:
+      gnome_color_scheme =\
         GnomeProfile(args.background_color
           , args.foreground_color
-          , rgb_int_list)
+          , args.rgb_list)
 
-    out_str: str = gnome_profile.create_color_scheme_str()
+    out_str: str = gnome_color_scheme.create_color_scheme_str()
 
-    if (args.name):
-      out_file_path: str =\
-        f'{args.name}.{ColorSchemeStrings.GNOME_OUT_EXT}'
+    out_file_path: str =\
+      f'{args.name}.{ColorSchemeStrings.GNOME_OUT_EXT}'
 
-      if (args.out_dir):
-        if (not path.isdir(args.out_dir)):
-          print(ErrorStrings.INVALID_DIR)
-        else:
-          out_file_path = path.join(args.out_dir, args.name)
+    if (args.out_dir):
+      if (not path.isdir(args.out_dir)):
+        print(ErrorStrings.INVALID_DIR)
+      else:
+          out_file_path = path.join(args.out_dir, out_file_path)
 
       f = open(out_file_path, 'w')
       f.write(out_str)

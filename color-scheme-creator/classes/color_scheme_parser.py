@@ -103,8 +103,8 @@ class ColorSchemeParser:
       , help=ParserStrings.PROFILE_TYPE_HELP_DESC
       , action='store'
       , type=str
-      , required=True
-      , default=RgbConst.DEFAULT_RGB_LIST
+      , required=False
+      , default=ParserStrings.GNOME_INPUT
       , choices=ParserStrings.PROFILE_TYPES
     )
 
@@ -139,7 +139,7 @@ class ColorSchemeParser:
       , action='store'
       , type=str
       , required=False
-      , default=RgbConst.DEFAULT_RGB_LIST
+      , default=RgbConst.DEFAULT_RGB_STR_LIST
     )
 
     cmd_line_group.add_argument('--name'
