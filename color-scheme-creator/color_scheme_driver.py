@@ -42,6 +42,9 @@ if __name__ == '__main__':
   elif (args.profile_type == ParserStrings.KONSOLE_INPUT):
     SchemeType = KonsoleScheme
 
+  if (args.default):
+    color_scheme = SchemeType()
+
   if(args.file):
     color_scheme = SchemeType(Utils.read_hex_color_json(args.file))
 

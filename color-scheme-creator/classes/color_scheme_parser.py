@@ -8,6 +8,7 @@ from os import getcwd
 
 from utilities.color_scheme_utils import GeneralUtils
 from classes.rgb_color import RgbConst
+from classes.rgb_color import RgbColor
 
 
 #_______________________________________________________________________
@@ -50,12 +51,12 @@ class ParserStrings:
     'Base name of ouput file. Do not include extension.'
 
   OUT_DIR_HELP_DESC: str =\
-    'Directory to put output file.'
+    'Directory path of output file.'
 
-  COLOR_JASON_HELP_DESC: str =\
+  COLOR_JSON_HELP_DESC: str =\
     'Path to json file containing the foreground, background, '\
-    'and palette. Should not be used  if the '\
-    f'{CMD_LINE_ENTRY_GROUP_TITLE} argument group is entered.'\
+    'and palette. Overrides '\
+    f'{CMD_LINE_ENTRY_GROUP_TITLE} argument group.'\
     '\nExample:'\
     '\n{ "background": "0x282828"'\
     '\n  , "foreground": "0xDF5f87"'\
@@ -77,6 +78,10 @@ class ParserStrings:
     '\n    , "0xFFFFFF"'\
     '\n  ]'\
     '\n}'\
+
+  DEFAULT_DESC: str =\
+    'Select to use default color profile:'\
+    f'{RgbColor.int_list_hex_str(RgbConst.DEFAULT_RGB_INT_LIST)}'
 
   GNOME_INPUT: str = 'gnome'
 
@@ -142,7 +147,7 @@ class ColorSchemeParser:
       , default=RgbConst.DEFAULT_RGB_STR_LIST
     )
 
-    cmd_line_group.add_argument('--name'
+    parser.add_argument('--name'
       , help=ParserStrings.OUT_FILE_HELP_DESC
       , action='store'
       , type=str
@@ -150,7 +155,7 @@ class ColorSchemeParser:
       , default=ParserStrings.DEFAULT_NAME
     )
 
-    cmd_line_group.add_argument('--out_dir'
+    parser.add_argument('--out_dir'
       , help=ParserStrings.OUT_DIR_HELP_DESC
       , action='store'
       , type=str
@@ -158,9 +163,15 @@ class ColorSchemeParser:
     )
 
     parser.add_argument('--file'
-      , help=ParserStrings.COLOR_JASON_HELP_DESC
+      , help=ParserStrings.COLOR_JSON_HELP_DESC
       , action='store'
       , type=str
+      , required=False
+    )
+
+    parser.add_argument('--default'
+      , help=ParserStrings.DEFAULT_DESC
+      , action='store_true'
       , required=False
     )
 

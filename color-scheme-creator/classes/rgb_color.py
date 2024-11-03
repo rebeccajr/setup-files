@@ -2,6 +2,7 @@
 # Contains operations related to RGB colors
 #_______________________________________________________________________
 
+from utilities.color_scheme_utils import GeneralUtils as Utils
 
 #_______________________________________________________________________
 class RgbConst:
@@ -21,41 +22,25 @@ class RgbConst:
   DEFAULT_BACKGROUND: int = 0x1c1c1c
   DEFAULT_FOREGROUND: int = 0xeeeeee
 
-  DEFAULT_RGB_STR_LIST: list[str] = "0x000000"\
-     " 0xd75f5f"\
-     " 0x5fd75f"\
-     " 0xd7d75f"\
-     " 0x5f5fd7"\
-     " 0xd75fd7"\
-     " 0x5fd7d7"\
-     " 0xeeeeee"\
-     " 0x000000"\
-     " 0xd75f5f"\
-     " 0x5fd75f"\
-     " 0xd7d75f"\
-     " 0x5f5fd7"\
-     " 0xd75fd7"\
-     " 0x5fd7d7"\
-     " 0xeeeeee"\
+  DEFAULT_RGB_STR_LIST: list[str] = '0x000000'\
+      ' 0x800000'\
+      ' 0x008000'\
+      ' 0x808000'\
+      ' 0x000080'\
+      ' 0x800080'\
+      ' 0x008080'\
+      ' 0xc0c0c0'\
+      ' 0x808080'\
+      ' 0xff0000'\
+      ' 0x00ff00'\
+      ' 0xffff00'\
+      ' 0x0000ff'\
+      ' 0xff00ff'\
+      ' 0x00ffff'\
+      ' 0xffffff'
 
-  DEFAULT_RGB_INT_LIST: list[str] = [0x000000
-     , 0x800000
-     , 0x008000
-     , 0x808000
-     , 0x000080
-     , 0x800080
-     , 0x008080
-     , 0xc0c0c0
-     , 0x808080
-     , 0xff0000
-     , 0x00ff00
-     , 0xffff00
-     , 0x0000ff
-     , 0xff00ff
-     , 0x00ffff
-     , 0xffffff
-  ]
-
+  DEFAULT_RGB_INT_LIST: list[int] =\
+    Utils.str_list_to_hex_list(DEFAULT_RGB_STR_LIST.split())
 
 #_______________________________________________________________________
 class RgbColor:
@@ -81,3 +66,17 @@ class RgbColor:
     rgb_map[RgbConst.BLU_STR] = blu
 
     return rgb_map
+
+  #_____________________________________________________________________
+  def int_list_hex_str(l: list[int]) -> str:
+    """
+    Prints list of integers as 6 digit hex string.
+    """
+
+    out_str: str = ''
+
+
+    for i in range (len(l)):
+      out_str = f'{out_str}\nColor {i:02}: 0x{l[i]:06x}'
+
+    return out_str

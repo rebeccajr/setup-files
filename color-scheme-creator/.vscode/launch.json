@@ -61,6 +61,16 @@
             , "~/.themes/"
           ]
         }
+        , { "name": "default"
+          , "type": "debugpy"
+          , "request": "launch"
+          , "program": "${workspaceFolder}/color_scheme_driver.py"
+          , "console": "integratedTerminal"
+          , "args":
+          [ "--default"
+          ]
+        }
+
 
 
 
