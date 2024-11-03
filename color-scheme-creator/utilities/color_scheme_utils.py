@@ -5,6 +5,25 @@
 
 import json
 
+class UtilErrors:
+
+  LINE: str =\
+    '\n________________________________________________________________'
+
+  ERROR: str =\
+    f'{LINE}'\
+    '\nUH OH! The program has encountered an error!'\
+    f'{LINE}'
+
+  ERROR_TYPE: str =\
+    f'{ERROR}'\
+    '\nTYPE:        '
+
+  DESC: str =\
+    '\nDESCRIPTION: '
+
+  CONVERSION_ERROR: str =\
+    f'Invalid conversion'
 
 #_______________________________________________________________________
 class GeneralUtils:
@@ -12,7 +31,7 @@ class GeneralUtils:
   MAX_COLOR: int = 0xFFFFFF
 
   #_____________________________________________________________________
-  def hex_int(s: str) -> int:
+  def str_hex_to_int(s: str) -> int:
     """
     Parameter
     s - hex integer represented as a string
@@ -21,7 +40,19 @@ class GeneralUtils:
     The int represented by the input string as hex.
     """
 
-    return int(s, base=16)
+    try:
+      if (isinstance(s, str)):
+        return int(s, base=16)
+
+    except Exception as error:
+      print(
+        f'{UtilErrors.ERROR_TYPE}'\
+        f'{type(error).__name__}'\
+        f'{UtilErrors.DESC}'\
+        f'{UtilErrors.CONVERSION_ERROR}'\
+        f'{UtilErrors.LINE}'\
+      )
+      return -1
 
   #_____________________________________________________________________
   def str_list_to_hex_list(l: list[str]) -> list[int]:
@@ -43,7 +74,7 @@ class GeneralUtils:
     int_list: list[int] = [0] * list_length
 
     for i in range(list_length):
-      int_list[i] = GeneralUtils.hex_int(l[i])
+      int_list[i] = GeneralUtils.str_hex_to_int(l[i])
 
     return int_list
 
@@ -94,3 +125,25 @@ class GeneralUtils:
     with open(file_path, 'r') as file:
       file_dict: dict = json.load(file)
       return file_dict
+
+  #_____________________________________________________________________
+  def string_from_bool(flag: bool, capitalize: bool):
+    """
+    Prints Boolean string.
+
+    Parameters
+    flag        - Boolean to print
+    capitalize  - Capitalize first letter
+    """
+
+    out_str: str = ''
+
+    if (flag):
+      out_str = 'true'
+    else:
+      out_str = 'false'
+
+    if (capitalize):
+      out_str = f'{out_str[0].upper()}{out_str[1:len(out_str)]}'
+
+    return out_str

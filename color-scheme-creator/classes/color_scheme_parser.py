@@ -54,12 +54,12 @@ class ParserStrings:
 
   COLOR_JASON_HELP_DESC: str =\
     'Path to json file containing the foreground, background, '\
-    'and pallette. Should not be used  if the '\
+    'and palette. Should not be used  if the '\
     f'{CMD_LINE_ENTRY_GROUP_TITLE} argument group is entered.'\
     '\nExample:'\
     '\n{ "background": "0x282828"'\
     '\n  , "foreground": "0xDF5f87"'\
-    '\n  , "pallette":["0x5f0000"'\
+    '\n  , "palette":["0x5f0000"'\
     '\n    , "0xFF5f00"'\
     '\n    , "0x5fFF00"'\
     '\n    , "0xFFFF5f"'\
@@ -116,7 +116,7 @@ class ColorSchemeParser:
     cmd_line_group.add_argument('--background_color'
       , help=ParserStrings.BACKGND_HELP_DESC
       , action='store'
-      , type=GeneralUtils.hex_int
+      , type=GeneralUtils.str_hex_to_int
       , required=False
       , default=RgbConst.DEFAULT_BACKGROUND
       , choices=range(0, GeneralUtils.MAX_COLOR + 1)
@@ -126,7 +126,7 @@ class ColorSchemeParser:
     cmd_line_group.add_argument('--foreground_color'
       , help=ParserStrings.FOREGND_HELP_DESC
       , action='store'
-      , type=GeneralUtils.hex_int
+      , type=GeneralUtils.str_hex_to_int
       , required=False
       , default=RgbConst.DEFAULT_FOREGROUND
       , choices=range(0, GeneralUtils.MAX_COLOR + 1)

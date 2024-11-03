@@ -16,8 +16,11 @@ class RgbConst:
   GRN_RIGHT_SHIFT: int = 8
   BLU_RIGHT_SHIFT: int = 0
 
-  DEFAULT_BACKGROUND: int = 0x1c1c1c
-  DEFAULT_FOREGROUND: int = 0xeeeeee
+  #DEFAULT_BACKGROUND: int = 0x1c1c1c
+  #DEFAULT_FOREGROUND: int = 0xeeeeee
+
+  DEFAULT_BACKGROUND: int = 0x000000
+  DEFAULT_FOREGROUND: int = 0xFFFFFF
 
   DEFAULT_RGB_STR_LIST: list[str] = "0x000000"\
      " 0xd75f5f"\
