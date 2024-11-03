@@ -2,6 +2,8 @@
 # Contains operations related to RGB colors
 #_______________________________________________________________________
 
+
+#_______________________________________________________________________
 class RgbConst:
 
   RED_STR: str = 'RED'
@@ -16,11 +18,8 @@ class RgbConst:
   GRN_RIGHT_SHIFT: int = 8
   BLU_RIGHT_SHIFT: int = 0
 
-  #DEFAULT_BACKGROUND: int = 0x1c1c1c
-  #DEFAULT_FOREGROUND: int = 0xeeeeee
-
-  DEFAULT_BACKGROUND: int = 0x000000
-  DEFAULT_FOREGROUND: int = 0xFFFFFF
+  DEFAULT_BACKGROUND: int = 0x1c1c1c
+  DEFAULT_FOREGROUND: int = 0xeeeeee
 
   DEFAULT_RGB_STR_LIST: list[str] = "0x000000"\
      " 0xd75f5f"\
@@ -40,28 +39,28 @@ class RgbConst:
      " 0xeeeeee"\
 
   DEFAULT_RGB_INT_LIST: list[str] = [0x000000
-     , 0xd75f5f
-     , 0x5fd75f
-     , 0xd7d75f
-     , 0x5f5fd7
-     , 0xd75fd7
-     , 0x5fd7d7
-     , 0xeeeeee
-     , 0x000000
-     , 0xd75f5f
-     , 0x5fd75f
-     , 0xd7d75f
-     , 0x5f5fd7
-     , 0xd75fd7
-     , 0x5fd7d7
-     , 0xeeeeee
+     , 0x800000
+     , 0x008000
+     , 0x808000
+     , 0x000080
+     , 0x800080
+     , 0x008080
+     , 0xc0c0c0
+     , 0x808080
+     , 0xff0000
+     , 0x00ff00
+     , 0xffff00
+     , 0x0000ff
+     , 0xff00ff
+     , 0x00ffff
+     , 0xffffff
   ]
 
 
 #_______________________________________________________________________
 class RgbColor:
 
-#_______________________________________________________________________
+  #_____________________________________________________________________
   def get_rgb_from_hex(rgb_color: int) -> dict:
     """
     Creates map of red, green, and blue values from a single number.

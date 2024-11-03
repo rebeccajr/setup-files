@@ -28,7 +28,6 @@ class ColorScheme(dict):
     if (not len(arg)):
       return
 
-
     #___________________________________________________________________
     if (isinstance(arg[0], dict)):
       self.construct_from_json(arg[0])
@@ -105,15 +104,3 @@ class ColorScheme(dict):
       pass
 
     return
-
-  #_____________________________________________________________________
-  # TODO is this being used?
-  #_____________________________________________________________________
-  def construct(self, json_file: dict):
-    json_file = json_file[0]
-    Cs = ColorScheme
-    background: int = Utils.str_hex_to_int(json_file[Cs.BACKGROUND_COLOR])
-    foreground: int = Utils.str_hex_to_int(json_file[Cs.FOREGROUND_COLOR])
-    rgb_color_str_list: str = json_file[Cs.PALETTE]
-
-    self.construct(background, foreground, rgb_color_str_list)

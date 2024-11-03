@@ -1,8 +1,8 @@
 
 { "background-color": "0x282828"
   , "foreground-color": "0xDF5f87"
-  , "palette":["0x000000"
-    , "0xFF0000"
+  , "palette":["0x000002"
+    , "0xFF00FF"
     , "0x5fFF5f"
     , "0xFFFF5f"
     , "0x5f5fFF"

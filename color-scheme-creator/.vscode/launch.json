@@ -40,9 +40,11 @@
           , "console": "integratedTerminal"
           , "args":
           [ "--profile_type"
-            , "gnome"
+            //, "gnome"
+            , "konsole"
             , "--out_dir"
-            , "~/.themes/"
+            //, "~/.themes/"
+            , "~/themes/"
             , "--file"
             , "utilities/color_file_ex.json"
           ]

@@ -6,12 +6,11 @@ from os import path
 from classes.color_scheme_parser import ColorSchemeParser
 from classes.color_scheme_parser import ParserStrings
 
-from classes.color_scheme_strings import ColorSchemeStrings
 from classes.color_scheme_strings import ErrorStrings
 
 from classes.scheme_types.base_scheme import ColorScheme
-from classes.scheme_types.gnome_scheme import GnomeProfile
-from classes.scheme_types.konsole_scheme import KonsoleProfile
+from classes.scheme_types.gnome_scheme import GnomeScheme
+from classes.scheme_types.konsole_scheme import KonsoleScheme
 
 from utilities.color_scheme_utils import GeneralUtils as Utils
 
@@ -38,10 +37,10 @@ if __name__ == '__main__':
   args: argparse.Namespace = parser.parse_args()
 
   if (args.profile_type == ParserStrings.GNOME_INPUT):
-    SchemeType = GnomeProfile
+    SchemeType = GnomeScheme
 
   elif (args.profile_type == ParserStrings.KONSOLE_INPUT):
-    SchemeType = KonsoleProfile
+    SchemeType = KonsoleScheme
 
   if(args.file):
     color_scheme = SchemeType(Utils.read_hex_color_json(args.file))
@@ -66,5 +65,5 @@ if __name__ == '__main__':
     f.write(color_scheme.color_scheme_str_)
     f.close()
 
-    print(color_scheme.color_scheme_str_)
-    print("!!!!")
+  print(color_scheme.color_scheme_str_)
+  print("!!!!")

@@ -5,13 +5,6 @@
 from classes.rgb_color import RgbConst, RgbColor
 from utilities.color_scheme_utils import GeneralUtils as Utils
 
-#_______________________________________________________________________
-class ColorSchemeStrings:
-  GNOME_OUT_EXT: str =\
-    'dconf'
-
-  KONSOLE_OUT_EXT: str =\
-    'colorscheme'
 
 #_______________________________________________________________________
 class ErrorStrings:

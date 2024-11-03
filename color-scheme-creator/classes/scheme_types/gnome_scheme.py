@@ -7,7 +7,7 @@ from classes.rgb_color import RgbConst, RgbColor
 
 
 #_______________________________________________________________________
-class GnomeProfile(ColorScheme):
+class GnomeScheme(ColorScheme):
 
   OUT_EXT: str = 'dconf'
 
@@ -16,8 +16,8 @@ class GnomeProfile(ColorScheme):
     Constructor
     """
 
-    super(GnomeProfile, self).__init__(*arg)
-    self.ext_ = GnomeProfile.OUT_EXT
+    super(GnomeScheme, self).__init__(*arg)
+    self.ext_ = GnomeScheme.OUT_EXT
     self.color_scheme_str_: str = self.create_color_scheme_str()
 
     return
@@ -49,8 +49,8 @@ class GnomeProfile(ColorScheme):
 
     out_str: str = \
       '[/]'\
-      f'\n{BACKGND}={GnomeProfile.create_color_entry(backgnd)}'\
-      f'\n{FOREGND}={GnomeProfile.create_color_entry(foregnd)}'\
+      f'\n{BACKGND}={GnomeScheme.create_color_entry(backgnd)}'\
+      f'\n{FOREGND}={GnomeScheme.create_color_entry(foregnd)}'\
       f'\n{PALETTE}=[{self.create_palette_str()}]'
 
     return out_str
@@ -58,7 +58,7 @@ class GnomeProfile(ColorScheme):
   #_____________________________________________________________________
   def create_palette_str(self) -> str:
     """
-    Creates string for color pallet.
+    Creates string for color palette.
     """
 
     out_str: str = ''
@@ -68,7 +68,7 @@ class GnomeProfile(ColorScheme):
     for i in range(len(palette)):
       color: int = palette[i]
       rgb_dict: dict = RgbColor.get_rgb_from_hex(color)
-      color_entry: str = GnomeProfile.create_color_entry(rgb_dict)
+      color_entry: str = GnomeScheme.create_color_entry(rgb_dict)
 
       out_str = f'{out_str}{color_entry}'
 

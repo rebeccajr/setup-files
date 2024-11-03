@@ -7,15 +7,18 @@ from classes.scheme_types.base_scheme import ColorScheme
 
 
 #_______________________________________________________________________
-class KonsoleProfile(ColorScheme):
+# TODO account for background and foreground intense
+#_______________________________________________________________________
+class KonsoleScheme(ColorScheme):
 
   OUT_EXT: str = 'colorscheme'
 
-  def __init__(self, intense_bold_: bool = True, *arg):
-    super(KonsoleProfile, self).__init__(*arg)
+  def __init__(self, *arg):
+    super(KonsoleScheme, self).__init__(*arg)
 
     self.construct_label_list()
-    self.intense_bold_ = intense_bold_
+    # TODO account for intense_bold in constructor
+    self.intense_bold_ = True
     self.normal_colors_: list[int] = self[self.PALETTE][0:8]
     self.intense_colors_: list[int] = self[self.PALETTE][8:16]
 
@@ -29,14 +32,14 @@ class KonsoleProfile(ColorScheme):
     Construct the list of labels for color scheme.
     """
 
-    self.label_list: list[str] = ['Background', 'BackgroundIntense']
+    self.label_list_: list[str] = ['Background', 'BackgroundIntense']
 
     for i in range(ColorScheme.PALETTE_COLOR_COUNT):
-      self.label_list.append(f'Color{i}')
-      self.label_list.append(f'Color{i}Intense')
+      self.label_list_.append(f'Color{i}')
+      self.label_list_.append(f'Color{i}Intense')
 
-    self.label_list.append('Foreground')
-    self.label_list.append('ForegroundIntense')
+    self.label_list_.append('Foreground')
+    self.label_list_.append('ForegroundIntense')
 
     return
 
@@ -86,13 +89,13 @@ class KonsoleProfile(ColorScheme):
 
     background_normal_str: str = self.create_simple_entry(
       rgb_color=self[self.BACKGROUND_COLOR]
-      , label=self.label_list[label_index])
+      , label=self.label_list_[label_index])
 
     label_index = label_index + 1
 
     background_intense_str: str = self.create_simple_entry(
       rgb_color=self[self.BACKGROUND_COLOR]
-      , label=self.label_list[label_index])
+      , label=self.label_list_[label_index])
 
     label_index = label_index + 1
 
@@ -106,13 +109,13 @@ class KonsoleProfile(ColorScheme):
 
       color_normal_str: str = self.create_simple_entry(
         rgb_color=self.normal_colors_[i]
-        , label=self.label_list[label_index])
+        , label=self.label_list_[label_index])
 
       label_index = label_index + 1
 
       color_intense_str: str = self.create_simple_entry(
         rgb_color=self.intense_colors_[i]
-        , label=self.label_list[label_index])
+        , label=self.label_list_[label_index])
 
       label_index = label_index + 1
 
@@ -120,14 +123,14 @@ class KonsoleProfile(ColorScheme):
     #___________________________________________________________________
 
     foreground_normal_str: str = self.create_simple_entry(
-      rgb_color=self[self.BACKGROUND_COLOR]
-      , label=self.label_list[label_index])
+      rgb_color=self[self.FOREGROUND_COLOR]
+      , label=self.label_list_[label_index])
 
     label_index = label_index + 1
 
     foreground_intense_str: str = self.create_simple_entry(
-      rgb_color=self[self.BACKGROUND_COLOR]
-      , label=self.label_list[label_index])
+      rgb_color=self[self.FOREGROUND_COLOR]
+      , label=self.label_list_[label_index])
 
     out_str: str = f'{out_str}{foreground_normal_str}{foreground_intense_str}'
 
