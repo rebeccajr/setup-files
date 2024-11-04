@@ -6,7 +6,7 @@ from os import path
 from classes.color_scheme_parser import ColorSchemeParser
 from classes.color_scheme_parser import ParserStrings
 
-from classes.color_scheme_strings import ErrorStrings
+from classes.color_scheme_strings import ColorSchemeStrings, ErrorStrings
 
 from classes.scheme_types.base_scheme import ColorScheme
 from classes.scheme_types.gnome_scheme import GnomeScheme
@@ -54,13 +54,12 @@ if __name__ == '__main__':
         , args.foreground_color
         , args.rgb_list)
 
-
   out_file_path: str =\
     f'{args.name}.{SchemeType.OUT_EXT}'
 
   if (args.out_dir):
     if (not path.isdir(args.out_dir)):
-      print(ErrorStrings.INVALID_DIR)
+      input(f'{ErrorStrings.INVALID_DIR}{ColorSchemeStrings.CONTINUE}')
     else:
         out_file_path = path.join(args.out_dir, out_file_path)
 
@@ -68,5 +67,9 @@ if __name__ == '__main__':
     f.write(color_scheme.color_scheme_str_)
     f.close()
 
+  input(f'{ColorSchemeStrings.OUTPUT_STR}'\
+    f'\n{out_file_path}'\
+    f'\n{ColorSchemeStrings.CONTINUE}')
+
   print(color_scheme.color_scheme_str_)
-  print("!!!!")
+  print(f'{ColorSchemeStrings.LINE}\n\n')

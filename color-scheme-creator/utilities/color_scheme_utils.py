@@ -107,7 +107,8 @@ class GeneralUtils:
     """
     Reads json file in the format
     ________________________________
-    { "background": "0x282828"
+    { "intense-bold": "true"
+      ,"background" : "0x282828"
       , "foreground": "0xDF5f87"
       , "color-list":["0x5f0000"
       ...
@@ -129,7 +130,7 @@ class GeneralUtils:
       return file_dict
 
   #_____________________________________________________________________
-  def string_from_bool(flag: bool, capitalize: bool):
+  def bool_to_str(flag: bool, capitalize: bool = False) -> str:
     """
     Prints Boolean string.
 
@@ -149,3 +150,20 @@ class GeneralUtils:
       out_str = f'{out_str[0].upper()}{out_str[1:len(out_str)]}'
 
     return out_str
+
+  #_____________________________________________________________________
+  def str_to_bool(s: str) -> bool:
+    """
+    Returns boolean corresponding with input string. Will return true
+    if string is any capitalization of the word 'true'.
+
+    Parameters
+    s - any string, assumption s = {'true', 'True', 'false', 'False'}
+
+    Returns
+    bool
+    """
+
+    lowercase: str = s.lower()
+
+    return lowercase == 'true' or lowercase == 't'

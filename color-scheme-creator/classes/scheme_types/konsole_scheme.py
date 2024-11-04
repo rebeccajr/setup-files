@@ -5,6 +5,8 @@
 from classes.rgb_color import RgbColor, RgbConst
 from classes.scheme_types.base_scheme import ColorScheme
 
+from utilities.color_scheme_utils import GeneralUtils as Utils
+
 
 #_______________________________________________________________________
 # TODO account for background and foreground intense
@@ -12,15 +14,55 @@ from classes.scheme_types.base_scheme import ColorScheme
 class KonsoleScheme(ColorScheme):
 
   OUT_EXT: str = 'colorscheme'
+  INTENSE_BOLD: str  = 'intense-bold'
+  BACKGROUND_COLOR_INTENSE: str = 'background-color-intense'
+  FOREGROUND_COLOR_INTENSE: str = 'foreground-color-intense'
 
   def __init__(self, *arg):
+    """
+    Constructor, takes additional argument to base class.
+
+    Parameters
+    intense_bold - set intense colors to appear bold, presence in json
+                   file input takes precedence
+    """
+
+    if (isinstance(arg[0], bool)):
+      self.intense_bold_ = arg[0]
+      arg = arg[1:len(arg)]
+
     super(KonsoleScheme, self).__init__(*arg)
 
-    self.construct_label_list()
-    # TODO account for intense_bold in constructor
-    self.intense_bold_ = True
+    #___________________________________________________________________
+    # Account for konsole specific parameters in json
+    #___________________________________________________________________
+    if (len(arg) and isinstance(arg[0], dict)):
+      d: dict = arg[0]
+
+      try:
+        self.intense_bold_ = Utils.str_to_bool(d[self.INTENSE_BOLD])
+      except:
+        self.intense_bold_ = True
+
+      try:
+        self[self.BACKGROUND_COLOR_INTENSE] =\
+          Utils.str_hex_to_int(d[self.BACKGROUND_COLOR_INTENSE])
+      except:
+        self[self.BACKGROUND_COLOR_INTENSE] =\
+          d[self.BACKGROUND_COLOR]
+
+      try:
+        self[self.FOREGROUND_COLOR_INTENSE] =\
+          Utils.str_hex_to_int(d[self.FOREGROUND_COLOR_INTENSE])
+      except:
+        self[self.FOREGROUND_COLOR_INTENSE] =\
+          d[self.FOREGROUND_COLOR]
+    #___________________________________________________________________
+
     self.normal_colors_: list[int] = self[self.PALETTE][0:8]
     self.intense_colors_: list[int] = self[self.PALETTE][8:16]
+
+    self.construct_label_list()
 
     self.color_scheme_str_: str = self.create_color_scheme_str()
 
@@ -77,8 +119,7 @@ class KonsoleScheme(ColorScheme):
     return outstr
 
   #_____________________________________________________________________
-  def create_color_scheme_str(self
-    , bold_bright_colors: bool = False ) -> str:
+  def create_color_scheme_str(self) -> str:
     """
     Creates color scheme string to be printed to a file.
     """
@@ -94,7 +135,7 @@ class KonsoleScheme(ColorScheme):
     label_index = label_index + 1
 
     background_intense_str: str = self.create_simple_entry(
-      rgb_color=self[self.BACKGROUND_COLOR]
+      rgb_color=self[self.BACKGROUND_COLOR_INTENSE]
       , label=self.label_list_[label_index])
 
     label_index = label_index + 1
@@ -129,7 +170,7 @@ class KonsoleScheme(ColorScheme):
     label_index = label_index + 1
 
     foreground_intense_str: str = self.create_simple_entry(
-      rgb_color=self[self.FOREGROUND_COLOR]
+      rgb_color=self[self.FOREGROUND_COLOR_INTENSE]
       , label=self.label_list_[label_index])
 
     out_str: str = f'{out_str}{foreground_normal_str}{foreground_intense_str}'
