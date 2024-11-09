@@ -36,10 +36,10 @@ if __name__ == '__main__':
 
   args: argparse.Namespace = parser.parse_args()
 
-  if (args.profile_type == ParserStrings.GNOME_INPUT):
+  if (args.scheme_type == ParserStrings.GNOME_INPUT):
     SchemeType = GnomeScheme
 
-  elif (args.profile_type == ParserStrings.KONSOLE_INPUT):
+  elif (args.scheme_type == ParserStrings.KONSOLE_INPUT):
     SchemeType = KonsoleScheme
 
   if (args.default):

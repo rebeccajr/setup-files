@@ -8,7 +8,7 @@
         , "program": "${workspaceFolder}/color_scheme_driver.py"
         , "console": "integratedTerminal"
         , "args":
-          [ "--profile_type"
+          [ "--scheme_type"
             , "gnome"
             , "--background_color"
             , "0x1c1c1c"
@@ -39,11 +39,11 @@
           , "program": "${workspaceFolder}/color_scheme_driver.py"
           , "console": "integratedTerminal"
           , "args":
-          [ "--profile_type"
-            , "gnome"
-            //, "konsole"
-            , "--out_dir"
-            , "~/.themes/"
+          [ "--scheme_type"
+            //, "gnome"
+            , "konsole"
+            //, "--out_dir"
+            //, "~/.themes/"
             //, "~/themes/"
             , "--file"
             , "utilities/color_file_ex.json"
@@ -55,7 +55,7 @@
           , "program": "${workspaceFolder}/color_scheme_driver.py"
           , "console": "integratedTerminal"
           , "args":
-          [ "--profile_type"
+          [ "--scheme_type"
             , "gnome"
             , "--out_dir"
             , "~/.themes/"
@@ -68,7 +68,7 @@
           , "console": "integratedTerminal"
           , "args":
           [ "--default"
-            , "--profile_type"
+            , "--scheme_type"
             , "konsole"
           ]
         }

@@ -44,8 +44,8 @@ class GnomeScheme(ColorScheme):
     FOREGND: str = ColorScheme.FOREGROUND_COLOR
     PALETTE: str = ColorScheme.PALETTE
 
-    backgnd: dict = RgbColor.get_rgb_from_hex(self[BACKGND])
-    foregnd: dict = RgbColor.get_rgb_from_hex(self[FOREGND])
+    backgnd: dict = RgbColor.get_rgb_from_hex(self.background_color_)
+    foregnd: dict = RgbColor.get_rgb_from_hex(self.foreground_color_)
 
     out_str: str = \
       '[/]'\
@@ -63,7 +63,7 @@ class GnomeScheme(ColorScheme):
 
     out_str: str = ''
 
-    palette: list[int] = self[ColorScheme.PALETTE]
+    palette: list[int] = self.palette_
 
     for i in range(len(palette)):
       color: int = palette[i]

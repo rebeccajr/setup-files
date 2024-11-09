@@ -11,6 +11,7 @@ from classes.rgb_color import RgbConst
 from classes.rgb_color import RgbColor
 
 
+# TODO change scheme_type to scheme_type
 #_______________________________________________________________________
 class ParserStrings:
 
@@ -24,10 +25,10 @@ class ParserStrings:
   PROGRAM_EPI:  str =\
     'This is the epilog to the help menu.'
 
-  PROFILE_TYPE_HELP_DESC: str =\
+  SCHEME_TYPE_HELP_DESC: str =\
     'Type of profile, e.g. Gnome, Konsole'
 
-  PROFILE_TYPES: list =\
+  SCHEME_TYPES: list =\
     [ 'gnome'
     , 'konsole'
     ]
@@ -104,13 +105,13 @@ class ColorSchemeParser:
     parser.epilog = ParserStrings.PROGRAM_EPI
     parser.description = ParserStrings.PROGRAM_DESC
 
-    parser.add_argument( '--profile_type'
-      , help=ParserStrings.PROFILE_TYPE_HELP_DESC
+    parser.add_argument( '--scheme_type'
+      , help=ParserStrings.SCHEME_TYPE_HELP_DESC
       , action='store'
       , type=str
       , required=False
       , default=ParserStrings.GNOME_INPUT
-      , choices=ParserStrings.PROFILE_TYPES
+      , choices=ParserStrings.SCHEME_TYPES
     )
 
     # Add type, move strings to class

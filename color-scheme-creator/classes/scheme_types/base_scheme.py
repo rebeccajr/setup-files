@@ -7,7 +7,7 @@ from utilities.color_scheme_utils import GeneralUtils as Utils
 
 
 #_______________________________________________________________________
-class ColorScheme(dict):
+class ColorScheme():
 
   BACKGROUND_COLOR: str = "background-color"
   FOREGROUND_COLOR: str = "foreground-color"
@@ -18,9 +18,9 @@ class ColorScheme(dict):
   #_____________________________________________________________________
   def __init__(self, *arg):
 
-    self[ColorScheme.BACKGROUND_COLOR] = RgbConst.DEFAULT_BACKGROUND
-    self[ColorScheme.FOREGROUND_COLOR] = RgbConst.DEFAULT_FOREGROUND
-    self[ColorScheme.PALETTE] = RgbConst.DEFAULT_RGB_INT_LIST
+    self.background_color_ = RgbConst.DEFAULT_BACKGROUND
+    self.foreground_color_ = RgbConst.DEFAULT_FOREGROUND
+    self.palette_ = RgbConst.DEFAULT_RGB_INT_LIST
 
     #___________________________________________________________________
     # Default with no arguments
@@ -34,12 +34,12 @@ class ColorScheme(dict):
 
     #___________________________________________________________________
     if (isinstance(arg[0], int)):
-        self[ColorScheme.BACKGROUND_COLOR] = arg[0]
+        self.background_color_ = arg[0]
 
     #___________________________________________________________________
     if (len(arg) > 1):
       try:
-        self[ColorScheme.FOREGROUND_COLOR] = arg[1]
+        self.foreground_color_ = arg[1]
       except TypeError:
         pass
 
@@ -53,7 +53,7 @@ class ColorScheme(dict):
 
         rgb_color_str_list: list[str] = rgb_colors.split()
 
-        self[ColorScheme.PALETTE] =\
+        self.palette_ =\
           Utils.str_list_to_hex_list(rgb_color_str_list)
 
       except TypeError:
@@ -67,7 +67,7 @@ class ColorScheme(dict):
     Constructs color scheme from dictionary created from json.
     """
     try:
-      self[ColorScheme.BACKGROUND_COLOR] =\
+      self.background_color_ =\
         Utils.str_hex_to_int(input_dict[ColorScheme.BACKGROUND_COLOR])
 
     except TypeError:
@@ -75,7 +75,7 @@ class ColorScheme(dict):
 
     #___________________________________________________________________
     try:
-      self[ColorScheme.FOREGROUND_COLOR] =\
+      self.foreground_color_ =\
         Utils.str_hex_to_int(input_dict[ColorScheme.FOREGROUND_COLOR])
 
     except TypeError:
@@ -89,7 +89,7 @@ class ColorScheme(dict):
 
         # Assumption that color palette is list of hex strings
         if (isinstance(color_palette[0], str)):
-          self[ColorScheme.PALETTE] =\
+          self.palette_ =\
           Utils.str_list_to_hex_list(color_palette)
 
         #_______________________________________________________________
@@ -98,7 +98,7 @@ class ColorScheme(dict):
         #_______________________________________________________________
         # Assumption that color palette is list of ints
         elif (isinstance(color_palette[0], int)):
-          self[ColorScheme.PALETTE] = color_palette
+          self.palette_ = color_palette
 
     except TypeError:
       pass

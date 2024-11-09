@@ -9,8 +9,6 @@ from utilities.color_scheme_utils import GeneralUtils as Utils
 
 
 #_______________________________________________________________________
-# TODO account for background and foreground intense
-#_______________________________________________________________________
 class KonsoleScheme(ColorScheme):
 
   OUT_EXT: str = 'colorscheme'
@@ -45,22 +43,22 @@ class KonsoleScheme(ColorScheme):
         self.intense_bold_ = True
 
       try:
-        self[self.BACKGROUND_COLOR_INTENSE] =\
+        self.background_color_intense_ =\
           Utils.str_hex_to_int(d[self.BACKGROUND_COLOR_INTENSE])
       except:
-        self[self.BACKGROUND_COLOR_INTENSE] =\
+        self.background_color_intense_ =\
           d[self.BACKGROUND_COLOR]
 
       try:
-        self[self.FOREGROUND_COLOR_INTENSE] =\
+        self.foreground_color_intense_ =\
           Utils.str_hex_to_int(d[self.FOREGROUND_COLOR_INTENSE])
       except:
-        self[self.FOREGROUND_COLOR_INTENSE] =\
+        self.foreground_color_intense_ =\
           d[self.FOREGROUND_COLOR]
     #___________________________________________________________________
 
-    self.normal_colors_: list[int] = self[self.PALETTE][0:8]
-    self.intense_colors_: list[int] = self[self.PALETTE][8:16]
+    self.normal_colors_: list[int] = self.palette_[0:8]
+    self.intense_colors_: list[int] = self.palette_[8:16]
 
     self.construct_label_list()
 
@@ -129,13 +127,13 @@ class KonsoleScheme(ColorScheme):
     label_index: int = 0
 
     background_normal_str: str = self.create_simple_entry(
-      rgb_color=self[self.BACKGROUND_COLOR]
+      rgb_color=self.background_color_
       , label=self.label_list_[label_index])
 
     label_index = label_index + 1
 
     background_intense_str: str = self.create_simple_entry(
-      rgb_color=self[self.BACKGROUND_COLOR_INTENSE]
+      rgb_color=self.background_color_intense_
       , label=self.label_list_[label_index])
 
     label_index = label_index + 1
@@ -164,13 +162,13 @@ class KonsoleScheme(ColorScheme):
     #___________________________________________________________________
 
     foreground_normal_str: str = self.create_simple_entry(
-      rgb_color=self[self.FOREGROUND_COLOR]
+      rgb_color=self.foreground_color_
       , label=self.label_list_[label_index])
 
     label_index = label_index + 1
 
     foreground_intense_str: str = self.create_simple_entry(
-      rgb_color=self[self.FOREGROUND_COLOR_INTENSE]
+      rgb_color=self.foreground_color_intense_
       , label=self.label_list_[label_index])
 
     out_str: str = f'{out_str}{foreground_normal_str}{foreground_intense_str}'
