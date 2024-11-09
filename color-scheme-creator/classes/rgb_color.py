@@ -31,13 +31,13 @@ class RgbConst:
       ' 0x008080'\
       ' 0xc0c0c0'\
       ' 0x808080'\
-      ' 0xff0000'\
-      ' 0x00ff00'\
-      ' 0xffff00'\
-      ' 0x0000ff'\
-      ' 0xff00ff'\
-      ' 0x00ffff'\
-      ' 0xffffff'
+      ' 0xdf0000'\
+      ' 0x00df00'\
+      ' 0xdfdf00'\
+      ' 0x0000df'\
+      ' 0xdf00df'\
+      ' 0x00dfdf'\
+      ' 0xdfdfdf'
 
   DEFAULT_RGB_INT_LIST: list[int] =\
     Utils.str_list_to_hex_list(DEFAULT_RGB_STR_LIST.split())

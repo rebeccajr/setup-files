@@ -25,7 +25,14 @@ class KonsoleScheme(ColorScheme):
                    file input takes precedence
     """
 
-    if (isinstance(arg[0], bool)):
+    #___________________________________________________________________
+    # Set class specific defaults
+    #___________________________________________________________________
+    self.intense_bold_ = True
+    self.background_color_intense_: int = RgbConst.DEFAULT_BACKGROUND
+    self.foreground_color_intense_: int = RgbConst.DEFAULT_FOREGROUND
+
+    if (len(arg) and isinstance(arg[0], bool)):
       self.intense_bold_ = arg[0]
       arg = arg[1:len(arg)]
 

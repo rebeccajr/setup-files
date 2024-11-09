@@ -60,9 +60,12 @@ class ParserStrings:
     'and palette. Overrides '\
     f'{CMD_LINE_ENTRY_GROUP_TITLE} argument group.'\
     '\nExample:'\
-    '\n{ "background": "0x282828"'\
-    '\n  , "foreground": "0xDF5f87"'\
-    '\n  , "palette":["0x5f0000"'\
+    '\n  {   "intense-bold"              : "false"'\
+    '\n    , "background-color"          : "0x282828"'\
+    '\n    , "background-color-intense"  : "0x1c1c1c"'\
+    '\n    , "foreground-color"          : "0xDF5f87"'\
+    '\n    , "foreground-color-intense"  : "0xFF5f87"'\
+    '\n    , "palette":["0x5f0000"'\
     '\n    , "0xFF5f00"'\
     '\n    , "0x5fFF00"'\
     '\n    , "0xFFFF5f"'\
