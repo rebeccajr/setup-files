@@ -40,8 +40,8 @@
           , "console": "integratedTerminal"
           , "args":
           [ "--scheme_type"
-            //, "gnome"
-            , "konsole"
+            , "gnome"
+            //, "konsole"
             //, "--out_dir"
             //, "~/.themes/"
             //, "~/themes/"

@@ -19,6 +19,9 @@ class ColorSchemeStrings:
     'The following text will be printed to the output file: '\
     '\n'
 
+  DEFAULT_NAME: str =\
+    'color-scheme-name'
+
 
 #_______________________________________________________________________
 class ErrorStrings:

@@ -6,9 +6,10 @@
 import argparse
 from os import getcwd
 
+from classes.color_scheme_strings import ColorSchemeStrings
+from classes.rgb_color import RgbColor, RgbConst
+
 from utilities.color_scheme_utils import GeneralUtils
-from classes.rgb_color import RgbConst
-from classes.rgb_color import RgbColor
 
 
 # TODO change scheme_type to scheme_type
@@ -90,7 +91,7 @@ class ParserStrings:
 
   COLOR_RANGE: str = '{0x000000-0xFFFFFF}'
 
-  DEFAULT_NAME: str = 'color-scheme-name'
+  DEFAULT_NAME: str = ColorSchemeStrings.DEFAULT_NAME
 
 
 #_______________________________________________________________________

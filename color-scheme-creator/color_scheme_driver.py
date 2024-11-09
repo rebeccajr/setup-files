@@ -54,22 +54,7 @@ if __name__ == '__main__':
         , args.foreground_color
         , args.rgb_list)
 
-  out_file_path: str =\
-    f'{args.name}.{SchemeType.OUT_EXT}'
-
-  if (args.out_dir):
-    if (not path.isdir(args.out_dir)):
-      input(f'{ErrorStrings.INVALID_DIR}{ColorSchemeStrings.CONTINUE}')
-    else:
-        out_file_path = path.join(args.out_dir, out_file_path)
-
-    f = open(out_file_path, 'w')
-    f.write(color_scheme.color_scheme_str_)
-    f.close()
-
-  input(f'{ColorSchemeStrings.OUTPUT_STR}'\
-    f'\n{out_file_path}'\
-    f'\n{ColorSchemeStrings.CONTINUE}')
+  color_scheme.write_file(args.out_dir)
 
   print(color_scheme.color_scheme_str_)
   print(f'{ColorSchemeStrings.LINE}\n\n')

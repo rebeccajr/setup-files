@@ -2,6 +2,10 @@
 # Base class for color schemes
 #_______________________________________________________________________
 
+from os import path
+
+from classes.color_scheme_strings import ColorSchemeStrings
+from classes.color_scheme_strings import ErrorStrings
 from classes.rgb_color import RgbConst
 from utilities.color_scheme_utils import GeneralUtils as Utils
 
@@ -21,6 +25,7 @@ class ColorScheme():
     self.background_color_ = RgbConst.DEFAULT_BACKGROUND
     self.foreground_color_ = RgbConst.DEFAULT_FOREGROUND
     self.palette_ = RgbConst.DEFAULT_RGB_INT_LIST
+    self.name_ = ColorSchemeStrings.DEFAULT_NAME
 
     #___________________________________________________________________
     # Default with no arguments
@@ -66,6 +71,14 @@ class ColorScheme():
     """
     Constructs color scheme from dictionary created from json.
     """
+
+    #___________________________________________________________________
+    try:
+      self.name_ = input_dict['name'].replace(' ', '-')
+    except:
+      pass
+
+    #___________________________________________________________________
     try:
       self.background_color_ =\
         Utils.str_hex_to_int(input_dict[ColorScheme.BACKGROUND_COLOR])
@@ -104,3 +117,27 @@ class ColorScheme():
       pass
 
     return
+
+  #_____________________________________________________________________
+  def write_file(self, out_dir) -> None:
+    """
+    Writes color scheme string to file.
+
+    Parameters
+    out_dir - path to directory
+    """
+
+    if path.isdir(out_dir):
+
+      out_file_path: str =\
+        f'{self.name_}.{self.OUT_EXT}'
+
+      if (not path.isdir(out_dir)):
+        input(f'{ErrorStrings.INVALID_DIR}{ColorSchemeStrings.CONTINUE}')
+      else:
+          out_file_path = path.join(out_dir, out_file_path)
+
+      f = open(out_file_path, 'w')
+      f.write(self.color_scheme_str_)
+      f.close()
+
