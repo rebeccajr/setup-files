@@ -171,6 +171,11 @@ class KonsoleScheme(ColorScheme):
       rgb_color=self.foreground_color_intense_
       , label=self.label_list_[label_index])
 
-    out_str: str = f'{out_str}{foreground_normal_str}{foreground_intense_str}'
+    out_str: str =\
+      f'{out_str}{foreground_normal_str}{foreground_intense_str}'\
+      '[General]'\
+      f'\nDescription={self.name_}'\
+      '\nOpacity=1'\
+      '\nWallpaper='
 
     return out_str
