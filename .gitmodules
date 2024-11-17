@@ -1,0 +1,3 @@
+[submodule "color-scheme-creator"]
+	path = color-scheme-creator
+	url = git@github.com:rebeccajr/color-scheme-creator.git
