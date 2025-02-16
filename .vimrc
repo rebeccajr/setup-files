@@ -51,10 +51,10 @@ set formatoptions+=nrco
 nnoremap ;; :
 
 " remap esc key
-inoremap l; <esc>
-inoremap L: <esc>
-nnoremap l; <esc>
-nnoremap L: <esc>
+inoremap cx <esc>
+inoremap CX <esc>
+nnoremap cx <esc>
+nnoremap CX <esc>
 
 " remap save
 inoremap fds <esc>:w<cr>
@@ -70,7 +70,7 @@ nnoremap DSA       :q!
 
 
 "append a line of the next typed character below the current line.
-inoremap Q yypv$r
+" inoremap Q yypv$r
 
 " make backspace behave properly
 set backspace=2
